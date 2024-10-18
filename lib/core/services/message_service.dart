@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
-import 'package:zetaton_task/contract/services/i_message_service.dart';
 
-@Singleton(as: IMessageService)
-class MessageService implements IMessageService{
+// ignore: constant_identifier_names
+enum ToastStates { SUCCESS, ERROR, WARNING }
+
+@singleton
+class MessageService {
   @override
-  void showSuccessSnackBar(String? title, String? message) {
-    Get.snackbar(
-      title ?? '',
-      message ?? '',
-      instantInit: true,
-      backgroundColor: Colors.white,
-      snackPosition: SnackPosition.BOTTOM,
-      snackStyle: SnackStyle.FLOATING,
-      duration: const Duration(seconds: 4),
-      messageText: Text(
-        message ?? '',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 20, color: Theme.of(Get.context!).primaryColor),
-      ),
-    );
+  static void showToast({
+    required String msg,
+    required ToastStates state,
+  }) =>
+      Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: chooseToastColor(state),
+        textColor: Colors.white,
+        fontSize: 16.spMin,
+      );
+
+  static Color chooseToastColor(ToastStates state) {
+    Color color;
+    switch (state) {
+      case ToastStates.SUCCESS:
+        color = Colors.green;
+        break;
+      case ToastStates.ERROR:
+        color = Colors.red;
+        break;
+      case ToastStates.WARNING:
+        color = Colors.amber;
+        break;
+    }
+    return color;
   }
 
-  @override
-  void showErrorSnackBar(String? title, String? message) {
-    Get.snackbar(title ?? '', message ?? '',
-        instantInit: true,
-        padding: EdgeInsets.only(top: 10.sp,bottom: 10.sp),
-        titleText: const Text('',style: TextStyle(fontSize: 0)),
-        backgroundColor: Colors.red,
-        snackPosition: SnackPosition.BOTTOM,
-        snackStyle: SnackStyle.FLOATING,
-        duration: const Duration(seconds: 4),
-        messageText: Text(
-          message ?? '',
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 14, color: Colors.white),
-        ));
-  }
-
-  @override
-  Future<dynamic>? showDecisionAlertDialog<T>({
+  Future<dynamic>? showDecisionAlertDialog<T>(BuildContext context,{
     String? title,
     required String message,
     required String confirm,
@@ -52,7 +49,7 @@ class MessageService implements IMessageService{
   }) {
     return showDialog(
         barrierDismissible: false,
-        context: Get.context!,
+        context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Colors.white,

@@ -1,23 +1,21 @@
-import 'package:zetaton_task/constants/constant_strings.dart';
-
 class Validator {
   Validator._();
 
   static String isValidPassword(String password) {
     if (password.isEmpty) {
-      return Constant.passwordValidationStatus.isEmpty;
+      return '';
     }
-    return Constant.passwordValidationStatus.isValid;
+    return '';
   }
 
   static String isValidConfirmPassword(
       {required String password, required String confirmPassword}) {
     if (confirmPassword.isEmpty) {
-      return Constant.reEnterPasswordValidationStatus.isEmpty;
+      return '';
     } else if (!isMatchPassword(password, confirmPassword)) {
-      return Constant.reEnterPasswordValidationStatus.isNotMatching;
+      return '';
     }
-    return Constant.reEnterPasswordValidationStatus.isValid;
+    return '';
   }
 
   static bool isValidEmail(String? email) {
@@ -31,12 +29,12 @@ class Validator {
     String pattern = r'^1\d{10}$';
 
     if (phone!.isEmpty) {
-      return Constant.phoneValidationStatus.isEmpty;
+      return '';
     } else if (!RegExp(pattern).hasMatch(phone)) {
-      return Constant.phoneValidationStatus.isNotNumber;
+      return '';
     }
 
-    return Constant.phoneValidationStatus.isValid;
+    return '';
   }
 
   static bool isValidName(String? userName) {

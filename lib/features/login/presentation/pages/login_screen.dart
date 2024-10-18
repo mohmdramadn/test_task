@@ -1,12 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:zetaton_task/components/app_button.dart';
-import 'package:zetaton_task/components/app_fields.dart';
-import 'package:zetaton_task/constants/constant_strings.dart';
-import 'package:zetaton_task/main.dart';
-import 'package:zetaton_task/screens/login/login_view_model.dart';
+import 'package:test_task/generated/locale_keys.g.dart';
+import 'package:test_task/main.dart';
+
+import '../../../../common/widgets/app_button.dart';
+import '../../../../common/widgets/app_fields.dart';
+import '../../../../core/utils/constants/constant_strings.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -57,9 +59,9 @@ class _Register extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: Constant.titles.doesNotHaveAccount),
+            TextSpan(text: 'doesNotHaveAccount'),
             TextSpan(
-              text: Constant.titles.register,
+              text: 'register',
               style: TextStyle(fontFamily: Constant.fonts.nexaBold),
               recognizer: TapGestureRecognizer()
                 ..onTap =
@@ -96,7 +98,7 @@ class _LoginButton extends StatelessWidget {
                     color: Colors.white,
                   ),
                 )
-              : Text(Constant.titles.login),
+              : Text(LocaleKeys.login.tr()),
         ),
       ),
     );
@@ -126,7 +128,7 @@ class _UserDetailsFields extends StatelessWidget {
         children: [
           Field(
             controller: emailController,
-            labelText: Constant.titles.email,
+            labelText: LocaleKeys.email.tr(),
             validator: (value) {
               var validationState =
                   context.read<LoginViewModel>().validateEmail(value!);
@@ -137,7 +139,7 @@ class _UserDetailsFields extends StatelessWidget {
           SizedBox(height: 16.0.h),
           Field(
             controller: passwordController,
-            labelText: Constant.titles.password,
+            labelText: LocaleKeys.password.tr(),
             obscureText: true,
             validator: (value) {
               var validationState =
@@ -161,7 +163,7 @@ class _Header extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 30.0.h, right: 8.0.w, left: 8.0.w),
       child: Text(
-        Constant.titles.login,
+        LocaleKeys.login.tr(),
         style: Theme.of(context).textTheme.headlineLarge,
       ),
     );
@@ -176,7 +178,7 @@ class _SubHeader extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 8.0.w),
       child: Text(
-        Constant.titles.loginSubHeader,
+        '',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
     );

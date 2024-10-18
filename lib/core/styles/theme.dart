@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zetaton_task/constants/constant_strings.dart';
+import 'package:test_task/core/utils/constants/constant_strings.dart';
 
 final appThemeData = ThemeData(
   fontFamily: Constant.fonts.nexa,
