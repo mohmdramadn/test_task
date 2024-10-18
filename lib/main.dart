@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task/core/router/router.dart';
 import 'package:test_task/core/styles/theme.dart';
 import 'package:injectable/injectable.dart';
-import 'package:test_task/core/utils/constants/constant_strings.dart';
+import 'package:test_task/core/utils/constants/constants.dart';
 import 'package:test_task/main.config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get_it/get_it.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return EasyLocalization(
       supportedLocales: [
-        Locale(Constant.translationsConstants.localeDefault),
+        Locale(Constant.translationsConstants.localeAR),
         Locale(Constant.translationsConstants.localeEN),
       ],
       path: 'assets/translations',
@@ -45,6 +45,9 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => MaterialApp(
+          locale: context.locale,
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
           title: 'Touring',

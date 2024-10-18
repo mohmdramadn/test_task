@@ -1,22 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:test_task/core/styles/app_colors.dart';
 
 class Constant {
   static TranslationsConstants translationsConstants =  TranslationsConstants();
   static Fonts fonts =  const Fonts();
+  static AppColors appColors =  AppColors();
 }
 
 class Fonts{
   const Fonts();
-  String get nexa => 'Nexa';
-  String get nexaBold => 'NexaBold';
-  String get nexaRegular => 'NexaRegular';
+  String get madaniRegular => 'MadaniRegular';
+  String get madaniExtraBold => 'MadaniExtraBold';
 }
 
 class TranslationsConstants {
   String get localeAR => 'ar';
   String get localeEN => 'en';
-  String get localeDefault => localeEN;
+  String get localeDefault => localeAR;
 
   bool isEnglish(BuildContext context) =>
       (context.locale.languageCode == localeEN);

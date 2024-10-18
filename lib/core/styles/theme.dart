@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_task/core/utils/constants/constant_strings.dart';
+import 'package:test_task/core/utils/constants/constants.dart';
 
 final appThemeData = ThemeData(
-  fontFamily: Constant.fonts.nexa,
+  fontFamily: Constant.fonts.madaniRegular,
   colorScheme: lightColorScheme,
   primaryColor: lightColorScheme.primary,
   primaryColorLight: lightColorScheme.primaryContainer,
@@ -18,7 +18,7 @@ final appThemeData = ThemeData(
       fontSize: 26.sp,
     ),
     headlineLarge: TextStyle(
-      fontFamily: Constant.fonts.nexaBold,
+      fontFamily: Constant.fonts.madaniExtraBold,
       color: lightColorScheme.primary,
       fontSize: 24.sp,
       fontWeight: FontWeight.w700,
@@ -101,11 +101,9 @@ const lightColorScheme = ColorScheme(
   errorContainer: Color(0xFFFFDAD6),
   onError: Color(0xFFFFFFFF),
   onErrorContainer: Color(0xFF410002),
-  background: Color(0xFFF2FFFD),
-  onBackground: Color(0xFF00201E),
   surface: Color(0xFFF2FFFD),
   onSurface: Color(0xFF00201E),
-  surfaceVariant: Color(0xFFE1E2EC),
+  surfaceContainerHighest: Color(0xFFE1E2EC),
   onSurfaceVariant: Color(0xFF44474F),
   outline: Color(0xFF74777F),
   onInverseSurface: Color(0xFFB1FFF8),
@@ -135,11 +133,9 @@ const darkColorScheme = ColorScheme(
   errorContainer: Color(0xFF93000A),
   onError: Color(0xFF690005),
   onErrorContainer: Color(0xFFFFDAD6),
-  background: Color(0xFF00201E),
-  onBackground: Color(0xFF70F7EE),
   surface: Color(0xFF00201E),
   onSurface: Color(0xFF70F7EE),
-  surfaceVariant: Color(0xFF44474F),
+  surfaceContainerHighest: Color(0xFF44474F),
   onSurfaceVariant: Color(0xFFC4C6D0),
   outline: Color(0xFF8E9099),
   onInverseSurface: Color(0xFF00201E),
