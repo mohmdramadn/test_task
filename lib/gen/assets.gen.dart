@@ -57,9 +57,21 @@ class $AssetsImagesPngsGen {
 class $AssetsImagesSvgsGen {
   const $AssetsImagesSvgsGen();
 
+  /// File path: assets/images/svgs/apple_logo.svg
+  SvgGenImage get appleLogo =>
+      const SvgGenImage('assets/images/svgs/apple_logo.svg');
+
   /// File path: assets/images/svgs/british_flag.svg
   SvgGenImage get britishFlag =>
       const SvgGenImage('assets/images/svgs/british_flag.svg');
+
+  /// File path: assets/images/svgs/facebook_logo.svg
+  SvgGenImage get facebookLogo =>
+      const SvgGenImage('assets/images/svgs/facebook_logo.svg');
+
+  /// File path: assets/images/svgs/google_logo.svg
+  SvgGenImage get googleLogo =>
+      const SvgGenImage('assets/images/svgs/google_logo.svg');
 
   /// File path: assets/images/svgs/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/images/svgs/logo.svg');
@@ -68,7 +80,8 @@ class $AssetsImagesSvgsGen {
   SvgGenImage get logoH => const SvgGenImage('assets/images/svgs/logo_h.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [britishFlag, logo, logoH];
+  List<SvgGenImage> get values =>
+      [appleLogo, britishFlag, facebookLogo, googleLogo, logo, logoH];
 }
 
 class Assets {
