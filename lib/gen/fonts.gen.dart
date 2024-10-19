@@ -10,12 +10,9 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Nexa
-  static const String nexa = 'Nexa';
+  /// Font family: MadaniExtraBold
+  static const String madaniExtraBold = 'MadaniExtraBold';
 
-  /// Font family: NexaBold
-  static const String nexaBold = 'NexaBold';
-
-  /// Font family: NexaRegular
-  static const String nexaRegular = 'NexaRegular';
+  /// Font family: MadaniRegular
+  static const String madaniRegular = 'MadaniRegular';
 }

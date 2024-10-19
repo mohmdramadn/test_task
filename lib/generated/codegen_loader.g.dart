@@ -15,12 +15,8 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> ar = {
-  "complete": "اكتمل",
   "arabic": "العربية",
   "english": "English",
-  "service": "الخدمات",
-  "courses": "الكورسات",
-  "online": "اونلاين",
   "login": "تسجيل الدخول",
   "signup": "إنشاء حساب",
   "fullName": "الإسم",
@@ -51,7 +47,8 @@ class CodegenLoader extends AssetLoader{
   "mobileNumberMustBe8Digits": "رقم الجوال يجب ان يكون 8 أرقام",
   "phoneNumberIsIncorrect": "رقم الهاتف غير صحيح",
   "sessionExpired": "حدث خطأ برجي المحاولة مرة اخري",
-  "somethingWentWrong": "حدث خطأ برجي المحاولة مرة اخري"
+  "somethingWentWrong": "حدث خطأ برجي المحاولة مرة اخري",
+  "onboarding_tittle": "التطبيق الآول للحصول على اللحظات الممتعة والتجارب المميزة"
 };
 static const Map<String,dynamic> en = {
   "arabic": "العربية",
@@ -86,7 +83,8 @@ static const Map<String,dynamic> en = {
   "mobileNumberMustBe8Digits": "Mobile number must be 8 digits",
   "phoneNumberIsIncorrect": "Phone number is incorrect",
   "sessionExpired": "Something wring happened try again later",
-  "somethingWentWrong": "Something wring happened try again later"
+  "somethingWentWrong": "Something wring happened try again later",
+  "onboarding_tittle": "The first application for enjoyable moments and unique experiences"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

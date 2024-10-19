@@ -31,5 +31,7 @@
   "mobileNumberMustBe8Digits": "Mobile number must be 8 digits",
   "phoneNumberIsIncorrect": "Phone number is incorrect",
   "sessionExpired": "Something wring happened try again later",
-  "somethingWentWrong": "Something wring happened try again later"
+  "somethingWentWrong": "Something wring happened try again later",
+  "onboarding_tittle": "The first application for enjoyable moments and unique experiences",
+  "discover_first": "Discover first"
 }

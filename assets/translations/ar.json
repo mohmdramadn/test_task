@@ -31,5 +31,7 @@
   "mobileNumberMustBe8Digits": "رقم الجوال يجب ان يكون 8 أرقام",
   "phoneNumberIsIncorrect": "رقم الهاتف غير صحيح",
   "sessionExpired": "حدث خطأ برجي المحاولة مرة اخري",
-  "somethingWentWrong": "حدث خطأ برجي المحاولة مرة اخري"
+  "somethingWentWrong": "حدث خطأ برجي المحاولة مرة اخري",
+  "onboarding_tittle": "التطبيق الآول للحصول على اللحظات الممتعة والتجارب المميزة",
+  "discover_first": "استكشف أولا"
 }

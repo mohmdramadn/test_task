@@ -2,21 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:test_task/generated/locale_keys.g.dart';
-import 'package:test_task/main.dart';
 
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_fields.dart';
-import '../../../../core/utils/constants/constant_strings.dart';
+import '../../../../core/utils/constants/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LoginViewModel>.value(
-        value: getIt<LoginViewModel>(), child: const _Body());
+    return const _Body();
   }
 }
 
@@ -62,10 +59,10 @@ class _Register extends StatelessWidget {
             TextSpan(text: 'doesNotHaveAccount'),
             TextSpan(
               text: 'register',
-              style: TextStyle(fontFamily: Constant.fonts.nexaBold),
+              style: TextStyle(fontFamily: Constant.fonts.madaniExtraBold),
               recognizer: TapGestureRecognizer()
                 ..onTap =
-                    () => context.read<LoginViewModel>().navigateToRegister(),
+                    () {},
             ),
           ],
         ),
@@ -79,18 +76,16 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isEnabled = context.select((LoginViewModel vm) => vm.isButtonEnabled);
-    var isLoading = context.select((LoginViewModel vm) => vm.isLoading);
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.h),
         child: AppButton(
-          onPressed: !isEnabled
+          onPressed: false
               ? null
-              : () => context.read<LoginViewModel>().onLoginSelectedAction(),
-          child: isLoading
+              : () {},
+          child: false
               ? SizedBox(
                   height: 15.h,
                   width: 15.w,
@@ -110,42 +105,40 @@ class _UserDetailsFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var emailController =
-        context.select((LoginViewModel vm) => vm.emailController);
-    var passwordController =
-        context.select((LoginViewModel vm) => vm.passwordController);
+    // var emailController =
+    //     context.select((LoginViewModel vm) => vm.emailController);
+    // var passwordController =
+    //     context.select((LoginViewModel vm) => vm.passwordController);
 
-    var formKey = context.select((LoginViewModel vm) => vm.formKey);
+    // var formKey = context.select((LoginViewModel vm) => vm.formKey);
 
     return Form(
-      key: formKey,
+      // key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      onChanged: () => context
-          .read<LoginViewModel>()
-          .setButtonEnabledState(formKey.currentState!.validate()),
+      onChanged: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Field(
-            controller: emailController,
+            controller: TextEditingController(),
             labelText: LocaleKeys.email.tr(),
             validator: (value) {
-              var validationState =
-                  context.read<LoginViewModel>().validateEmail(value!);
-              if (validationState != "") return validationState;
-              return null;
+              // var validationState =
+              //     context.read<LoginViewModel>().validateEmail(value!);
+              // if (validationState != "") return validationState;
+              // return null;
             },
           ),
           SizedBox(height: 16.0.h),
           Field(
-            controller: passwordController,
+            controller: TextEditingController(),
             labelText: LocaleKeys.password.tr(),
             obscureText: true,
             validator: (value) {
-              var validationState =
-                  context.read<LoginViewModel>().validatePassword(value!);
-              if (validationState != "") return validationState;
-              return null;
+              // var validationState =
+              //     context.read<LoginViewModel>().validatePassword(value!);
+              // if (validationState != "") return validationState;
+              // return null;
             },
           ),
           SizedBox(height: 30.0.h),
