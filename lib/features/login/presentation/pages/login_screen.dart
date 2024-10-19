@@ -7,7 +7,10 @@ import 'package:test_task/generated/locale_keys.g.dart';
 
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_fields.dart';
+import '../../../../core/router/routes_names.dart';
 import '../../../../core/utils/constants/constants.dart';
+import '../../../../../common/widgets/header.dart';
+import '../../../../../common/widgets/sub_header.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -60,7 +63,7 @@ class _Body extends StatelessWidget {
                   ),
                   10.0.h.verticalSpace,
                   const _SocialLogin(),
-                  Spacer(),
+                  const Spacer(),
                   const Center(child: _Register()),
                 ],
               ),
@@ -227,7 +230,7 @@ class _UserDetailsFields extends StatelessWidget {
               controller: TextEditingController(),
               labelText: LocaleKeys.phoneNumber.tr(),
               validator: (value) {
-                // var validationState =
+                // var validationState =asdsad
                 //     context.read<LoginViewModel>().validateEmail(value!);
                 // if (validationState != "") return validationState;
                 // return null;
@@ -248,8 +251,12 @@ class _UserDetailsFields extends StatelessWidget {
             },
           ),
           5.0.h.verticalSpace,
-          const Align(
-              alignment: Alignment.centerLeft, child: _ForgotPassword()),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                  onTap: () =>
+                      Navigator.pushNamed(context, Routes.forgetPasswordRoute),
+                  child: const _ForgotPassword())),
           5.0.h.verticalSpace,
         ],
       ),
@@ -257,48 +264,21 @@ class _UserDetailsFields extends StatelessWidget {
   }
 }
 
+
 class _Header extends StatelessWidget {
   const _Header();
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
     return Padding(
       padding: EdgeInsets.only(top: 30.0.h, right: 8.0.w, left: 8.0.w),
       child: Center(
         child: Column(
           children: [
-            Assets.images.svgs.logoH.svg(),
-            15.verticalSpace,
-            Text(
-              LocaleKeys.login.tr(),
-              style: theme.textTheme.headlineMedium!
-                  .copyWith(color: Colors.white, fontSize: 16.spMin),
-            ),
+            Header(title: LocaleKeys.login.tr()),
             4.0.h.verticalSpace,
-            const _SubHeader(),
+            SubHeader(title: LocaleKeys.login_title.tr()),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SubHeader extends StatelessWidget {
-  const _SubHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 8.0.w),
-      child: Text(
-        LocaleKeys.login_title.tr(),
-        style: theme.textTheme.headlineSmall!.copyWith(
-          color: Constant.appColors.greyHint,
-          fontSize: 12.spMin,
         ),
       ),
     );

@@ -36,5 +36,15 @@
   "onboarding_tittle": "The first application for enjoyable moments and unique experiences",
   "discover_first": "Discover first",
   "login_title": "Enter your mobile number to continue registration",
-  "forgotPassword": "Forgot password ?"
+  "forgotPassword": "Forgot password ?",
+  "sendCode": "Send Code",
+  "resendCodeAfter": "Resend After",
+  "forget_password_title": "Enter your mobile number to receive a code to reset your password",
+  "confirm": "Confirm",
+  "resetPassword": "Recover the password",
+  "enterCodeSentTo": "Enter the code sent to",
+  "newPassword": "New Password",
+  "enterNewPassword": "Enter a completely different new password",
+  "confirmNewPassword": "Confirm New Password",
+  "save": "Save"
 }

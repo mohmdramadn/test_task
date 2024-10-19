@@ -39,5 +39,15 @@ abstract class  LocaleKeys {
   static const discover_first = 'discover_first';
   static const login_title = 'login_title';
   static const forgotPassword = 'forgotPassword';
+  static const sendCode = 'sendCode';
+  static const resendCodeAfter = 'resendCodeAfter';
+  static const forget_password_title = 'forget_password_title';
+  static const confirm = 'confirm';
+  static const resetPassword = 'resetPassword';
+  static const enterCodeSentTo = 'enterCodeSentTo';
+  static const newPassword = 'newPassword';
+  static const enterNewPassword = 'enterNewPassword';
+  static const confirmNewPassword = 'confirmNewPassword';
+  static const save = 'save';
 
 }

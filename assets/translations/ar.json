@@ -36,5 +36,15 @@
   "onboarding_tittle": "التطبيق الآول للحصول على اللحظات الممتعة والتجارب المميزة",
   "discover_first": "استكشف أولا",
   "login_title": "ادخل رقم الجوال الخاص بك لمتابعة التسجيل",
-  "forgotPassword": "نسيت كلمة السر؟"
+  "forgotPassword": "نسيت كلمة السر؟",
+  "sendCode": "إرسال الكود",
+  "resendCodeAfter": "إعادة إرسال بعد",
+  "forget_password_title": "ادخل رقم الموبايل الخاص بك لاستقبال كود لاعادة صياغة كلمة المرور",
+  "confirm": "تأكيد",
+  "resetPassword": "استرجــاع كلمــة الســـر",
+  "enterCodeSentTo": "ادخال الكود المرسل الى ",
+  "newPassword": "كلـــمة الســـر الجــديدة",
+  "enterNewPassword": "ادخل كلمة الســـر جديدة مختلفه كليا",
+  "confirmNewPassword": "تأكيد كلمة السر الجديدة",
+  "save": "حفظ"
 }
