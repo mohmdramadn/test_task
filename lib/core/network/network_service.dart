@@ -8,14 +8,14 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:test_task/common/data/interfaces/i_connection_service.dart';
 import 'package:test_task/core/network/interceptors/connection_interceptor.dart';
 import 'package:test_task/core/utils/helper/error_handler.dart';
-import 'package:test_task/main.dart';
 
 @singleton
 class NetworkService {
+  final IConnectionService connectionService;
   late _NetworkClient _networkClient;
 
-  NetworkService() {
-    _networkClient = _NetworkClient();
+  NetworkService({required this.connectionService}) {
+    _networkClient = _NetworkClient(connectionService: connectionService);
   }
 
   Future<Result<Response>> getAsync(
@@ -54,9 +54,10 @@ class NetworkService {
 }
 
 class _NetworkClient {
+  final IConnectionService connectionService;
   late Dio _client;
 
-  _NetworkClient() {
+  _NetworkClient({required this.connectionService}) {
     _client = Dio(
       BaseOptions(
         baseUrl: '',
@@ -66,7 +67,7 @@ class _NetworkClient {
       ),
     );
     _client.interceptors.addAll([
-      ConnectionInterceptor(getIt<IConnectionService>()),
+      ConnectionInterceptor(connectionService),
       PrettyDioLogger(
         requestHeader: true,
         requestBody: true,

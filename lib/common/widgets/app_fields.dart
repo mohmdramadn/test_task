@@ -11,6 +11,8 @@ class Field extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     this.inputType,
+    this.onChange,
+    this.suffixIcon,
   });
 
   final String labelText;
@@ -18,6 +20,8 @@ class Field extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputType? inputType;
+  final Widget? suffixIcon;
+  final Function(String value)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +37,11 @@ class Field extends StatelessWidget {
             color: Constant.appColors.textFieldHintColor, fontSize: 11.spMin),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.r)),
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
+        suffixIcon: suffixIcon
       ),
       obscureText: obscureText,
       validator: validator,
+      onChanged: onChange,
     );
   }
 }

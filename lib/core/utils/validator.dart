@@ -1,3 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../generated/locale_keys.g.dart';
+
 class Validator {
   Validator._();
 
@@ -29,9 +33,7 @@ class Validator {
     String pattern = r'^1\d{10}$';
 
     if (phone!.isEmpty) {
-      return '';
-    } else if (!RegExp(pattern).hasMatch(phone)) {
-      return '';
+      return LocaleKeys.fieldIsRequired.tr();
     }
 
     return '';

@@ -1,23 +1,34 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_task/features/login/presentation/cubit/login_state.dart';
 import 'package:test_task/gen/assets.gen.dart';
 import 'package:test_task/generated/locale_keys.g.dart';
+import 'package:test_task/main.dart';
 
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_fields.dart';
 import '../../../../core/router/routes_names.dart';
+import '../../../../core/utils/base_state.dart';
 import '../../../../core/utils/constants/constants.dart';
 import '../../../../../common/widgets/header.dart';
 import '../../../../../common/widgets/sub_header.dart';
+import '../../data/repositories/login_repository.dart';
+import '../cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const _Body();
+    return BlocProvider(
+      create: (_) => LoginCubit(loginRepository: getIt<LoginRepository>()),
+      child: Builder(builder: (context) {
+        return const _Body();
+      }),
+    );
   }
 }
 
@@ -55,10 +66,8 @@ class _Body extends StatelessWidget {
                   Center(
                     child: Text(
                       LocaleKeys.orSignUpWithSocial.tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Constant.appColors.textFieldHintColor),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Constant.appColors.textFieldHintColor),
                     ),
                   ),
                   10.0.h.verticalSpace,
@@ -176,31 +185,37 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60.h,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.h),
-        child: AppButton(
-          onPressed: false ? null : () {},
-          borderRadius: BorderRadius.circular(12.r),
-          child: false
-              ? SizedBox(
-                  height: 15.h,
-                  width: 15.w,
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                )
-              : Text(
-                  LocaleKeys.login.tr(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: Colors.white),
-                ),
-        ),
-      ),
+    return BlocBuilder<LoginCubit, LoginStates>(
+      builder: (context, state) {
+        return SizedBox(
+          height: 60.h,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: AppButton(
+              onPressed: !state.isLoginButtonEnabled
+                  ? null
+                  : () => context.read<LoginCubit>().onLoginSelectedAsync(),
+              borderRadius: BorderRadius.circular(12.r),
+              child: state.state is LoadingResult
+                  ? SizedBox(
+                      height: 15.h,
+                      width: 15.w,
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(
+                      LocaleKeys.login.tr(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.white),
+                    ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -210,60 +225,72 @@ class _UserDetailsFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var emailController =
-    //     context.select((LoginViewModel vm) => vm.emailController);
-    // var passwordController =
-    //     context.select((LoginViewModel vm) => vm.passwordController);
-
-    // var formKey = context.select((LoginViewModel vm) => vm.formKey);
-
-    return Form(
-      // key: formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      onChanged: () {},
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 50.h,
-            child: Field(
-              controller: TextEditingController(),
-              labelText: LocaleKeys.phoneNumber.tr(),
-              validator: (value) {
-                // var validationState =asdsad
-                //     context.read<LoginViewModel>().validateEmail(value!);
-                // if (validationState != "") return validationState;
-                // return null;
-              },
-              inputType: TextInputType.number,
-            ),
-          ),
-          25.0.verticalSpace,
-          Field(
-            controller: TextEditingController(),
-            labelText: LocaleKeys.password.tr(),
-            obscureText: true,
-            validator: (value) {
-              // var validationState =
-              //     context.read<LoginViewModel>().validatePassword(value!);
-              // if (validationState != "") return validationState;
-              // return null;
-            },
-          ),
-          5.0.h.verticalSpace,
-          Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, Routes.forgetPasswordRoute),
-                  child: const _ForgotPassword())),
-          5.0.h.verticalSpace,
-        ],
-      ),
+    return BlocBuilder<LoginCubit, LoginStates>(
+      builder: (context, state) {
+        return Builder(
+          builder: (context) {
+            return Form(
+              key: state.loginFormKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 50.h,
+                    child: Field(
+                      controller: state.phoneController,
+                      labelText: LocaleKeys.phoneNumber.tr(),
+                      validator: (value) {
+                        var validationState = context
+                            .read<LoginCubit>()
+                            .onValidatePhoneAction(value!);
+                        if (validationState != "") return validationState;
+                        return null;
+                      },
+                      inputType: TextInputType.number,
+                    ),
+                  ),
+                  25.0.verticalSpace,
+                  Field(
+                    controller: state.passwordController,
+                    labelText: LocaleKeys.password.tr(),
+                    obscureText: state.isPasswordObscure,
+                    suffixIcon: InkWell(
+                        onTap: () => context
+                            .read<LoginCubit>()
+                            .onPasswordVisibilityChangeAction(),
+                        child: state.isPasswordObscure
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility)),
+                    onChange: (value) => context
+                        .read<LoginCubit>()
+                        .setLoginButtonState(
+                            state.loginFormKey!.currentState!.validate()),
+                    validator: (value) {
+                      var validationState = context
+                          .read<LoginCubit>()
+                          .onValidatePasswordAction(value!);
+                      if (validationState != "") return validationState;
+                      return null;
+                    },
+                  ),
+                  5.0.h.verticalSpace,
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                          onTap: () => Navigator.pushNamed(
+                              context, Routes.forgetPasswordRoute),
+                          child: const _ForgotPassword())),
+                  5.0.h.verticalSpace,
+                ],
+              ),
+            );
+          }
+        );
+      },
     );
   }
 }
-
 
 class _Header extends StatelessWidget {
   const _Header();

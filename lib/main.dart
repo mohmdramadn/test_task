@@ -19,6 +19,8 @@ final getIt = GetIt.instance;
 void configureDependencies() => $initGetIt(getIt);
 
 void main() async{
+  configureDependencies();
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
