@@ -33,6 +33,7 @@ final appThemeData = ThemeData(
       fontSize: 20.sp,
     ),
     titleMedium: TextStyle(
+      color: Colors.white,
       fontSize: 20.0.sp,
       letterSpacing: 1.3,
       wordSpacing: 1.3,
@@ -76,7 +77,7 @@ final appThemeData = ThemeData(
     isDense: true,
     isCollapsed: true,
     filled: true,
-    fillColor: Colors.grey.withOpacity(0.1),
+    fillColor: Colors.transparent,
   ),
   disabledColor: Colors.grey,
   dividerColor: lightColorScheme.primary,

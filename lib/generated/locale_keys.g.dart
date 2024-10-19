@@ -32,9 +32,12 @@ abstract class  LocaleKeys {
   static const mobileNumberIsRequired = 'mobileNumberIsRequired';
   static const mobileNumberMustBe8Digits = 'mobileNumberMustBe8Digits';
   static const phoneNumberIsIncorrect = 'phoneNumberIsIncorrect';
+  static const phoneNumber = 'phoneNumber';
   static const sessionExpired = 'sessionExpired';
   static const somethingWentWrong = 'somethingWentWrong';
   static const onboarding_tittle = 'onboarding_tittle';
   static const discover_first = 'discover_first';
+  static const login_title = 'login_title';
+  static const forgotPassword = 'forgotPassword';
 
 }
